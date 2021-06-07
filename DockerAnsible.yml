@@ -1,0 +1,23 @@
+
+- hosts: all 
+  become: true
+  tasks:
+  - name: Add Docker GPG key
+    apt key: url=https://download.docker.com/linux/ubuntu/gpg
+
+  - name: Add Docker APT repository
+    apt repository:
+      repo: deb https://download.docker.com/linux/ubuntu ((ansible distribution release]) stable
+
+  - name: Install list of packages
+    apt:
+      name: " {{ item }}"
+      state: present
+      update cache: yes
+    with_items:
+      - apt-transport-https
+      - ca-certificates
+      -	curl
+      - software-properties-common
+      - docker.io
+

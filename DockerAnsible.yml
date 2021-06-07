@@ -17,7 +17,7 @@
     with_items:
       - apt-transport-https
       - ca-certificates
-      -	curl
+      - curl
       - software-properties-common
       - docker.io
 
